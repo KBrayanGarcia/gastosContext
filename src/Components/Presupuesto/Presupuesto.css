@@ -1,0 +1,13 @@
+.fondo-presupuesto{
+    background: linear-gradient(90deg, #1B2F33 0%, rgba(40, 80, 46, 0.7) 66.9%, rgba(71, 104, 44, 0.5) 100%);
+}
+.presupuesto-form{
+    border-radius: 15px;
+    background-color: var(--colorPrincipal);
+}
+
+@media (min-width: 576px) {
+    .presupuesto-form{
+        width: 400px;
+    }
+}
