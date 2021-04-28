@@ -10,8 +10,8 @@ const PresupuestoForm = () => {
             </div>
             <div className="campos">
                 <div className="form-group">
-                    <label htmlFor="presupuesto" className="text-muted">Introduce tu presupuesto inicial</label> 
-                    <input type="text" className="form-control input-app-gastos" id="presupuesto"/>
+                    <label htmlFor="presupuesto" className="text-muted">Introduce tu presupuesto inicial</label>
+                    <input type="number" className="form-control input-app-gastos" id="presupuesto"/>
                 </div>
             </div>
             <div>

@@ -1,0 +1,10 @@
+.layout-gastos{
+    background-color: var(--colorPrincipal);
+    min-height: 100vh;
+    color: white;
+}
+
+.cantidad-presupuesto{
+    background-color: var(--colorSecundario2);
+    text-align: center;
+}

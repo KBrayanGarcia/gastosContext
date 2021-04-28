@@ -22,3 +22,9 @@ body{
     font-weight: 600;
     text-transform: uppercase;
 }
+.btn-gastos-principal:focus{
+    box-shadow: none;
+}
+.btn-gastos-principal:hover{
+    color: white;
+}
