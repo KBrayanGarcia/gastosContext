@@ -5,11 +5,11 @@
 }
 
 .sidebar-col, .presupuesto-col{
-    background-color: var(--colorSecundario2);
+    background-color: none;
 }
 
 .cantidad-presupuesto{
-    /* background-color: var(--colorSecundario2); */
+    background-color: var(--colorSecundario2);
     text-align: center;
 }
 
@@ -22,7 +22,13 @@
 }
 
 @media (min-width: 768px) {
-        .app-resumen-gastos{
+    .app-resumen-gastos{
         height: 100vh;
+    }
+    .sidebar-col, .presupuesto-col{
+        background-color: var(--colorSecundario2)
+    }
+    .cantidad-presupuesto{
+        background-color: transparent;
     }
 }

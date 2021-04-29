@@ -17,10 +17,10 @@ const GastosLayout = () => {
         <div className="layout-gastos py-2 py-md-0">
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col d-none d-md-block sidebar-col min-vh-100">
+                    <div className="col-md-2 d-none d-md-block sidebar-col min-vh-100">
                         <Sidebar/>
                     </div>
-                    <div className="col-md-10 presupuesto-col">
+                    <div className="col-md-10 presupuesto-col ">
                         <div>
                             <div className="container-md-fluid">
                                 <div className="cantidad-presupuesto p-3">
