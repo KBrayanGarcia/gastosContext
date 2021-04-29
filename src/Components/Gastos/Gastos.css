@@ -4,7 +4,25 @@
     color: white;
 }
 
-.cantidad-presupuesto{
+.sidebar-col, .presupuesto-col{
     background-color: var(--colorSecundario2);
+}
+
+.cantidad-presupuesto{
+    /* background-color: var(--colorSecundario2); */
     text-align: center;
+}
+
+.modal-form-gastos, .form-gastos{
+    background-color: var(--colorPrincipal);
+    border-radius: 15px;
+}
+.app-resumen-gastos{
+    background-color: var(--colorPrincipal);
+}
+
+@media (min-width: 768px) {
+        .app-resumen-gastos{
+        height: 100vh;
+    }
 }
