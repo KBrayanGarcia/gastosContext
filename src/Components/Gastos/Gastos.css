@@ -21,6 +21,10 @@
     background-color: var(--colorPrincipal);
 }
 
+.gasto-caja{
+    max-width: 366px;
+}
+
 @media (min-width: 768px) {
     .app-resumen-gastos{
         height: 100vh;
