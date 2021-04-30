@@ -9,9 +9,11 @@ const PresupuestoForm = () => {
                 <h4 className="text-center"> Presupuesto Inicial</h4>
             </div>
             <div className="campos">
-                <div className="form-group">
-                    <label htmlFor="presupuesto" className="text-muted">Introduce tu presupuesto inicial</label>
-                    <input type="number" className="form-control input-app-gastos" id="presupuesto"/>
+                <div className="input-group mb-3">
+                    <div className="input-group-prepend">
+                        <span className="input-group-text" id="basic-addon1">$</span>
+                    </div>
+                    <input type="number" className="form-control input-app-gastos" id="presupuesto" />
                 </div>
             </div>
             <div>

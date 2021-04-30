@@ -2,11 +2,14 @@ import React from 'react'
 
 const FormGastos = () => {
     return (
-        <div className="form-gastos">
+        <div className="form-gastos shadow-lg">
             <form>
-                <div className="form-group">
-                    <label htmlFor="cantidadGasto" className="text-muted">Cantidad</label>
-                    <input type="number" className="form-control input-app-gastos" id="cantidadGasto"/>
+                <label htmlFor="cantidad" className="text-muted">Cantidad</label>
+                <div className="input-group mb-3">
+                    <div className="input-group-prepend">
+                        <span className="input-group-text" id="basic-addon1">$</span>
+                    </div>
+                    <input type="number" className="form-control input-app-gastos" id="cantidad" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="descripcionGasto" className="text-muted">Descripción</label>

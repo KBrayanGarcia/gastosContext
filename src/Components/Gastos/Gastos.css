@@ -10,7 +10,6 @@
 
 .cantidad-presupuesto{
     background-color: var(--colorSecundario2);
-    text-align: center;
 }
 
 .modal-form-gastos, .form-gastos{
@@ -23,6 +22,13 @@
 
 .gasto-caja{
     max-width: 366px;
+}
+.sidebar-item{
+    padding: 10px ;
+    min-height: 40px;
+}
+.sidebar-item.active{
+    background-color: var(--colorPrincipal);
 }
 
 @media (min-width: 768px) {

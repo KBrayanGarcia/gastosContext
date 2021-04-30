@@ -23,16 +23,16 @@ const GastosLayout = () => {
                     <div className="col-md-10 presupuesto-col ">
                         <div>
                             <div className="container-md-fluid">
-                                <div className="cantidad-presupuesto p-3">
+                                <div className="cantidad-presupuesto p-3 text-center text-md-left">
                                     <h5 className="mb-0">Restante: $5000</h5> 
                                 </div>
-                                <div className="app-resumen-gastos row ">
-                                    <div className="mt-2 col-md-4">
+                                <div className="app-resumen-gastos row">
+                                    <div className="mt-2 col-md-6">
                                         <button type="button" className="btn btn-block btn-gastos-principal d-md-none" data-toggle="modal" data-target="#exampleModal">
                                             Ingresar
                                         </button>
                                         <div className={queryLaptop ? 'd-block' : 'modal fade'} id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div className="modal-dialog modal-dialog-centered">
+                                            <div className="modal-dialog modal-dialog-centered my-0">
                                                 <div className="modal-content modal-form-gastos">
                                                     <div className="modal-body">
                                                         <FormGastos/>
@@ -41,7 +41,7 @@ const GastosLayout = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-8">
+                                    <div className="col-md-6">
                                         <ResumenGastos/>
                                     </div>
                                 </div>
