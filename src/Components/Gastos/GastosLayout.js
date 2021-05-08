@@ -1,10 +1,11 @@
-import React, {lazy, Suspense}from 'react';
+import React, {lazy, Suspense, useContext, useEffect}from 'react';
 
 
 import {Querys} from '../utils/Querys';
 import './Gastos.css';
 import LoaderElement from '../utils/LoaderElement/LoaderElement'
 
+import PresupuestoContext from '../../Context/Presupuesto/PresupuestoContext';
 const Sidebar = lazy(() => import('./Sidebar'))
 const FormGastos = lazy(() => import('./FormGastos'))
 const ResumenGastos = lazy(() => import('./ResumenGastos'))
@@ -12,7 +13,14 @@ const ResumenGastos = lazy(() => import('./ResumenGastos'))
 
 const GastosLayout = () => {
 
+    const { presupuestoRestante,presupuestoInicial,  obtenerPresupuesto } = useContext(PresupuestoContext);
+
     const queryLaptop = Querys('(min-width: 768px)');
+
+    useEffect(() => {
+        obtenerPresupuesto()
+    // eslint-disable-next-line
+    }, [])
 
 
     return (
@@ -28,7 +36,8 @@ const GastosLayout = () => {
                         <div>
                             <div className="container-md-fluid">
                                 <div className="cantidad-presupuesto p-3 text-center text-md-left">
-                                    <h5 className="mb-0">Restante: $5000</h5> 
+                                    <h5 className="mb-0">Inicial: { presupuestoInicial }</h5>
+                                    <h5 className="mb-0">Restante: { presupuestoRestante }</h5>
                                 </div>
                                 <div className="app-resumen-gastos row">
                                     <div className="mt-2 col-md-6">
