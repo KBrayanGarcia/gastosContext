@@ -5,12 +5,11 @@
 }
 
 .sidebar-col, .presupuesto-col{
-    background-color: var(--colorSecundario2);
+    background-color: none;
 }
 
 .cantidad-presupuesto{
-    /* background-color: var(--colorSecundario2); */
-    text-align: center;
+    background-color: var(--colorSecundario2);
 }
 
 .modal-form-gastos, .form-gastos{
@@ -21,8 +20,25 @@
     background-color: var(--colorPrincipal);
 }
 
+.gasto-caja{
+    max-width: 366px;
+}
+.sidebar-item{
+    padding: 10px ;
+    min-height: 40px;
+}
+.sidebar-item.active{
+    background-color: var(--colorPrincipal);
+}
+
 @media (min-width: 768px) {
-        .app-resumen-gastos{
+    .app-resumen-gastos{
         height: 100vh;
+    }
+    .sidebar-col, .presupuesto-col{
+        background-color: var(--colorSecundario2)
+    }
+    .cantidad-presupuesto{
+        background-color: transparent;
     }
 }

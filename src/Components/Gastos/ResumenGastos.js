@@ -1,11 +1,13 @@
 import React from 'react'
 
+import Gasto from './Gasto';
+
 const ResumenGastos = () => {
     return (
-        <div>
-            Desde el resumen de gastos
+        <div className="mt-2 d-flex align-items-center flex-column">
+            <Gasto/>
         </div>
     )
 }
 
-export default ResumenGastos
+export default ResumenGastos;
