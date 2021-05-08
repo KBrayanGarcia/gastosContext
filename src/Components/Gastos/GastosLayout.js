@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {lazy, Suspense}from 'react';
 
 
 import {Querys} from '../utils/Querys';
-import FormGastos from './FormGastos';
-import ResumenGastos from './ResumenGastos';
-import Sidebar from './Sidebar';
 import './Gastos.css';
+import LoaderElement from '../utils/LoaderElement/LoaderElement'
+
+const Sidebar = lazy(() => import('./Sidebar'))
+const FormGastos = lazy(() => import('./FormGastos'))
+const ResumenGastos = lazy(() => import('./ResumenGastos'))
 
 
 const GastosLayout = () => {
@@ -18,7 +20,9 @@ const GastosLayout = () => {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-2 d-none d-md-block sidebar-col min-vh-100">
-                        <Sidebar/>
+                        <Suspense fallback={ <LoaderElement/> }>
+                            <Sidebar/>
+                        </Suspense>
                     </div>
                     <div className="col-md-10 presupuesto-col ">
                         <div>
@@ -35,14 +39,19 @@ const GastosLayout = () => {
                                             <div className="modal-dialog modal-dialog-centered my-0">
                                                 <div className="modal-content modal-form-gastos">
                                                     <div className="modal-body">
-                                                        <FormGastos/>
+                                                        <Suspense fallback={ <LoaderElement /> }>
+                                                            <FormGastos/>
+                                                            
+                                                        </Suspense>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
-                                        <ResumenGastos/>
+                                        <Suspense fallback={ <LoaderElement /> }>
+                                            <ResumenGastos/>
+                                        </Suspense>
                                     </div>
                                 </div>
                             </div>
