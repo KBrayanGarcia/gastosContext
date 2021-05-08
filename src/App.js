@@ -1,24 +1,26 @@
-import React from 'react'
+import React, {lazy, Suspense} from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-
-import GastosLayout from './Components/Gastos/GastosLayout';
-import PresupuestoLayout from './Components/Presupuesto/PresupuestoLayout';
+import LoaderPage from './Components/utils/LoaderPage/LoaderPage';
+const GastosLayout = lazy(() => import('./Components/Gastos/GastosLayout'))
+const PresupuestoLayout = lazy(() => import('./Components/Presupuesto/PresupuestoLayout'))
 
 function App() {
     return (
         <>
             <Router>
-                <Switch>
-                    <Route
-                        exact path="/"
-                        component={PresupuestoLayout}
-                    />
-                    <Route
-                        exact path="/gastos"
-                        component={GastosLayout}
-                    />
-                </Switch>
+                <Suspense fallback={<LoaderPage/>}>
+                    <Switch>
+                        <Route
+                            exact path="/"
+                            component={PresupuestoLayout}
+                        />
+                        <Route
+                            exact path="/gastos"
+                            component={GastosLayout}
+                        />
+                    </Switch>
+                </Suspense>
             </Router>
         </>
     );
