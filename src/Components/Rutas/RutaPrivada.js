@@ -2,7 +2,7 @@ import React, {useEffect, useContext} from 'react'
 import PresupuestoContext from '../../Context/Presupuesto/PresupuestoContext'
 import { Route, Redirect } from 'react-router-dom';
 
-const RutaPrivada = ({ component: Component, ...props }) => {
+const RutaPrivadaGastos = ({ component: Component, ...props }) => {
     
     const { PresupuestoExiste, obtenerPresupuesto, cargando } = useContext(PresupuestoContext);
 
@@ -21,4 +21,4 @@ const RutaPrivada = ({ component: Component, ...props }) => {
     )
 }
 
-export default RutaPrivada
+export default RutaPrivadaGastos

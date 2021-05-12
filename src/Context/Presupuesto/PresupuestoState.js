@@ -4,7 +4,8 @@ import PresupuestoReducer from './PresupuestoReducer';
 
 import {
     ESTABLECER_PRESUPUESTO,
-    OBTENER_PRESUPUESTO
+    OBTENER_PRESUPUESTO,
+    ELIMINAR_PRESUPUESTO
 } from './TypesPresupuesto';
 
 const PresupuestoState = (props) => {
@@ -31,6 +32,12 @@ const PresupuestoState = (props) => {
         })
     }
 
+    const eliminarPresupuesto = () => {
+        dispatch({
+            type: ELIMINAR_PRESUPUESTO
+        })
+    }
+
     return (
         <PresupuestoContext.Provider
             value={ {
@@ -41,7 +48,8 @@ const PresupuestoState = (props) => {
 
                 /* Funciones */
                 establecerPresupuesto,
-                obtenerPresupuesto
+                obtenerPresupuesto,
+                eliminarPresupuesto
             }}
         >
             {props.children}

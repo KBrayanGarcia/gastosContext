@@ -1,6 +1,7 @@
 import {
     ESTABLECER_PRESUPUESTO,
-    OBTENER_PRESUPUESTO
+    OBTENER_PRESUPUESTO,
+    ELIMINAR_PRESUPUESTO
 } from './TypesPresupuesto';
 
 // eslint-disable-next-line
@@ -22,6 +23,14 @@ export default (state, action) => {
                 presupuestoRestante: JSON.parse(localStorage.getItem('PresupuestoRestante')),
                 PresupuestoExiste: JSON.parse(localStorage.getItem('PresupuestoInicial')) ? true : false,
                 cargando: false
+            }
+        case ELIMINAR_PRESUPUESTO:
+            localStorage.removeItem('PresupuestoInicial');
+            localStorage.removeItem('PresupuestoRestante');
+            return {
+                presupuestoInicial: 0,
+                presupuestoRestante: 0,
+                PresupuestoExiste: false
             }
         
         default:

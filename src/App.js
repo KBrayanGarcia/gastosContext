@@ -1,7 +1,8 @@
 import React, {lazy, Suspense} from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
-import RutaPrivada from './Components/Rutas/RutaPrivada';
+import RutaPrivadaGastos from './Components/Rutas/RutaPrivada';
+import RutaPrivadaPresupuesto from './Components/Rutas/RutaPrivadaPresupuesto';
 import LoaderPage from './Components/utils/LoaderPage/LoaderPage';
 import PresupuestoState from './Context/Presupuesto/PresupuestoState';
 const GastosLayout = lazy(() => import('./Components/Gastos/GastosLayout'))
@@ -14,11 +15,11 @@ function App() {
                 <Router>
                     <Suspense fallback={<LoaderPage/>}>
                         <Switch>
-                            <Route
+                            <RutaPrivadaPresupuesto
                                 exact path="/"
                                 component={PresupuestoLayout}
                             />
-                            <RutaPrivada
+                            <RutaPrivadaGastos
                                 exact path="/gastos"
                                 component={GastosLayout}
                             />

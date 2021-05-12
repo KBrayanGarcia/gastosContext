@@ -1,4 +1,5 @@
-import React, {lazy, Suspense, useContext, useEffect}from 'react';
+import React, {lazy, Suspense, useContext, useEffect, useState}from 'react';
+import { Popover, ArrowContainer  } from 'react-tiny-popover'
 
 
 import {Querys} from '../utils/Querys';
@@ -13,9 +14,11 @@ const ResumenGastos = lazy(() => import('./ResumenGastos'))
 
 const GastosLayout = () => {
 
-    const { presupuestoRestante,presupuestoInicial,  obtenerPresupuesto } = useContext(PresupuestoContext);
+    const { presupuestoRestante,presupuestoInicial,  obtenerPresupuesto, eliminarPresupuesto } = useContext(PresupuestoContext);
 
     const queryLaptop = Querys('(min-width: 768px)');
+
+    const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 
     useEffect(() => {
         obtenerPresupuesto()
@@ -36,7 +39,53 @@ const GastosLayout = () => {
                         <div>
                             <div className="container-md-fluid">
                                 <div className="cantidad-presupuesto p-3 text-center text-md-left">
-                                    <h5 className="mb-0">Inicial: { presupuestoInicial }</h5>
+                                    <div className="d-flex justify-content-center justify-content-md-start align-items-center">
+                                        <h5 className="mb-0">Inicial: { presupuestoInicial } </h5>
+                                            <Popover
+                                                onClickOutside={() => setIsPopoverOpen(false)}
+                                                isOpen={isPopoverOpen}
+                                                positions={queryLaptop ? ['right'] : ['bottom']} 
+                                                content={ ({ position, childRect, popoverRect }) => (
+                                                    <ArrowContainer 
+                                                        position={position}
+                                                        childRect={ {
+                                                            top: childRect.top,
+                                                            bottom: childRect.bottom,
+                                                            left: childRect.left,
+                                                            right: childRect.right,
+                                                            width: childRect.width,
+                                                            height: childRect.height
+                                                        }}
+                                                        popoverRect={popoverRect}
+                                                        arrowColor={'green'}
+                                                        arrowSize={10}
+                                                        arrowStyle={ {
+                                                            borderRight: '11px solid var(--success)'
+                                                        }}
+                                                        className='popover-arrow-container'
+                                                        arrowClassName='popover-arrow border-success'
+                                                    >
+                                                        <div className="p-2 bg-success">
+                                                            <div className="btn btn-sm btn-danger mr-2"
+                                                                onClick={ () => {
+                                                                    setIsPopoverOpen(!isPopoverOpen)
+                                                                    eliminarPresupuesto()
+                                                                }}
+                                                            >
+                                                                Confirmar
+                                                            </div>
+                                                            <div className="btn btn-sm btn-secondary"
+                                                                onClick={ () => setIsPopoverOpen(!isPopoverOpen)}
+                                                            >Cancelar</div>
+                                                        </div>
+                                                    </ArrowContainer>
+                                                )}
+                                            >
+                                            <div onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+                                                <i className="fas fa-trash text-danger ml-2"></i>
+                                            </div>
+                                        </Popover>
+                                    </div>
                                     <h5 className="mb-0">Restante: { presupuestoRestante }</h5>
                                 </div>
                                 <div className="app-resumen-gastos row">
