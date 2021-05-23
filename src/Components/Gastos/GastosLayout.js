@@ -1,5 +1,6 @@
 import React, {lazy, Suspense, useContext, useEffect, useState}from 'react';
 import { Popover, ArrowContainer  } from 'react-tiny-popover'
+import NumberFormat from 'react-number-format';
 
 
 import {Querys} from '../utils/Querys';
@@ -40,7 +41,9 @@ const GastosLayout = () => {
                             <div className="container-md-fluid">
                                 <div className="cantidad-presupuesto p-3 text-center text-md-left">
                                     <div className="d-flex justify-content-center justify-content-md-start align-items-center">
-                                        <h5 className="mb-0">Inicial: { presupuestoInicial } </h5>
+                                        <h5 className="mb-0">Inicial:{' '}
+                                            <NumberFormat value={ presupuestoInicial } displayType={ 'text' } thousandSeparator={ true } prefix={ '$' } />
+                                        </h5>
                                             <Popover
                                                 onClickOutside={() => setIsPopoverOpen(false)}
                                                 isOpen={isPopoverOpen}
@@ -86,7 +89,9 @@ const GastosLayout = () => {
                                             </div>
                                         </Popover>
                                     </div>
-                                    <h5 className="mb-0">Restante: { presupuestoRestante }</h5>
+                                    <h5 className="mb-0">Restante:{' '}
+                                        <NumberFormat value={ presupuestoRestante } displayType={ 'text' } thousandSeparator={ true } prefix={ '$' } />
+                                    </h5>
                                 </div>
                                 <div className="app-resumen-gastos row">
                                     <div className="mt-2 col-md-6">

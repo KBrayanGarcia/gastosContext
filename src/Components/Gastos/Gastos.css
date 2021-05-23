@@ -16,12 +16,18 @@
     background-color: var(--colorPrincipal);
     border-radius: 15px;
 }
+
+.modal-form-gastos:focus-within {
+    border:1px solid var(--colorSecundario);
+}
+
 .app-resumen-gastos{
     background-color: var(--colorPrincipal);
 }
 
 .gasto-caja{
     max-width: 366px;
+    min-width: 290px;
 }
 .sidebar-item{
     padding: 10px ;

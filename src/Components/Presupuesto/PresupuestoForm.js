@@ -1,5 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react'
 import { withRouter } from 'react-router-dom';
+import NumberFormat from 'react-number-format';
+
 
 import PresupuestoContext from '../../Context/Presupuesto/PresupuestoContext';
 import { alerta } from '../../Herramientas';
@@ -46,12 +48,18 @@ const PresupuestoForm = (props) => {
                     <div className="input-group-prepend">
                         <span className="input-group-text" id="basic-addon1">$</span>
                     </div>
-                    <input
+                    {/* <input
                         type="number"
                         className="form-control input-app-gastos"
                         id="presupuesto"
                         value={ presupuestoinput }
                         onChange={ e => actualizarPresupuestoInput(Number(e.target.value)) }
+                    /> */}
+                    <NumberFormat
+                        value={ presupuestoinput }
+                        thousandSeparator={ true }
+                        className="form-control input-app-gastos"
+                        onValueChange={ ({value}) => actualizarPresupuestoInput(Number(value))}
                     />
                 </div>
             </div>
