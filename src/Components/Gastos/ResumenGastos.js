@@ -10,11 +10,11 @@ const ResumenGastos = () => {
 
     return (
         <div className="mt-2 d-flex align-items-center flex-column">
-            {gastos.map((gasto, index) => (
+            {gastos.length > 0 ? gastos.map((gasto, index) => (
                 <Suspense fallback={ <LoaderELement /> } key={ index }>
                     <Gasto  gasto={ gasto }/>
                 </Suspense>
-            ))}
+            )): <small>Agrega tu primer gasto para ver el registro aqui</small> }
         </div>
     )
 }

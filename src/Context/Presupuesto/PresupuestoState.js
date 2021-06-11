@@ -5,7 +5,10 @@ import PresupuestoReducer from './PresupuestoReducer';
 import {
     ESTABLECER_PRESUPUESTO,
     OBTENER_PRESUPUESTO,
-    ELIMINAR_PRESUPUESTO
+    ELIMINAR_PRESUPUESTO,
+    RESTAR_PRESUPUESTO,
+    SUMAR_PRESUPUESTO_GASTO_BORRADO,
+    ACTUALIZAR_RESTANTE
 } from './TypesPresupuesto';
 
 const PresupuestoState = (props) => {
@@ -38,6 +41,30 @@ const PresupuestoState = (props) => {
         })
     }
 
+    const restarPresupuesto = nuevoPresupuesto => {
+        dispatch({
+            type: RESTAR_PRESUPUESTO,
+            payload:nuevoPresupuesto
+        })
+    }
+
+    const sumarPresupuestoGastoBorrado = cantidad => {
+        let nuevoPresupuesto = state.presupuestoRestante;
+        nuevoPresupuesto += cantidad;
+
+        dispatch({
+            type: SUMAR_PRESUPUESTO_GASTO_BORRADO,
+            payload: nuevoPresupuesto
+        })
+    }
+
+    const actualizarRestante = cantidad => {
+        dispatch({
+            type: ACTUALIZAR_RESTANTE,
+            payload: cantidad
+        })
+    }
+
     return (
         <PresupuestoContext.Provider
             value={ {
@@ -49,7 +76,10 @@ const PresupuestoState = (props) => {
                 /* Funciones */
                 establecerPresupuesto,
                 obtenerPresupuesto,
-                eliminarPresupuesto
+                eliminarPresupuesto,
+                restarPresupuesto,
+                sumarPresupuestoGastoBorrado,
+                actualizarRestante
             }}
         >
             {props.children}

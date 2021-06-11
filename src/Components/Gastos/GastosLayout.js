@@ -8,6 +8,7 @@ import './Gastos.css';
 import LoaderElement from '../utils/LoaderElement/LoaderElement'
 
 import PresupuestoContext from '../../Context/Presupuesto/PresupuestoContext';
+import GastosContext from '../../Context/Gastos/GastosContext';
 const Sidebar = lazy(() => import('./Sidebar'))
 const FormGastos = lazy(() => import('./FormGastos'))
 const ResumenGastos = lazy(() => import('./ResumenGastos'))
@@ -16,6 +17,7 @@ const ResumenGastos = lazy(() => import('./ResumenGastos'))
 const GastosLayout = () => {
 
     const { presupuestoRestante,presupuestoInicial,  obtenerPresupuesto, eliminarPresupuesto } = useContext(PresupuestoContext);
+    const { eliminarGastos} = useContext(GastosContext);
 
     const queryLaptop = Querys('(min-width: 768px)');
 
@@ -70,9 +72,10 @@ const GastosLayout = () => {
                                                     >
                                                         <div className="p-2 bg-success">
                                                             <div className="btn btn-sm btn-danger mr-2"
-                                                                onClick={ () => {
+                                                                onClick={ async () => {
                                                                     setIsPopoverOpen(!isPopoverOpen)
-                                                                    eliminarPresupuesto()
+                                                                    await eliminarPresupuesto()
+                                                                    eliminarGastos()
                                                                 }}
                                                             >
                                                                 Confirmar
@@ -90,7 +93,19 @@ const GastosLayout = () => {
                                         </Popover>
                                     </div>
                                     <h5 className="mb-0">Restante:{' '}
-                                        <NumberFormat value={ presupuestoRestante } displayType={ 'text' } thousandSeparator={ true } prefix={ '$' } />
+                                        <NumberFormat
+                                            value={ presupuestoRestante }
+                                            displayType={ 'text' }
+                                            thousandSeparator={ true }
+                                            prefix={ '$' }
+                                            className={
+                                                presupuestoRestante <= (presupuestoInicial / 2) && presupuestoRestante > (presupuestoInicial / 4)
+                                                    ? 'text-warning'
+                                                    : presupuestoRestante <= (presupuestoInicial / 4)
+                                                        ? 'text-danger'
+                                                        : null
+                                            }
+                                        />
                                     </h5>
                                 </div>
                                 <div className="app-resumen-gastos row">

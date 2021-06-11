@@ -3,11 +3,24 @@ import NumberFormat from 'react-number-format';
 
 import {alerta} from '../../Herramientas'
 import GastosContext from '../../Context/Gastos/GastosContext';
+import PresupuestoContext from '../../Context/Presupuesto/PresupuestoContext';
 
 const FormGastos = () => {
 
     const cantidadRef = useRef();
-    const { agregarGasto, reiniciarformfastos, cancelarReinicioFormGastos } = useContext(GastosContext);
+    const {
+        estado_edicion,
+        gasto_a_editar,
+        agregarGasto,
+        reiniciarformfastos,
+        cancelarReinicioFormGastos,
+        cancelarEdicionGasto,
+        actualizarGastos
+    } = useContext(GastosContext);
+    const {
+        presupuestoRestante,
+        actualizarRestante
+    } = useContext(PresupuestoContext);
 
     const [cantidad, actualizarCantidad] = useState(0);
     const [descripcion, actualizarDescripcion] = useState('');
@@ -22,7 +35,16 @@ const FormGastos = () => {
     // eslint-disable-next-line
     }, [reiniciarformfastos])
 
-    const validarGasto = e => {
+    useEffect(() => {
+        if (estado_edicion) {
+            actualizarDescripcion(gasto_a_editar.descripcion)
+            actualizarCantidad(gasto_a_editar.cantidad)
+            cantidadRef.current.focus();
+        }
+    // eslint-disable-next-line
+    }, [estado_edicion])
+
+    const validarGasto = async e => {
         e.preventDefault();
 
         if (cantidad <= 0 || descripcion.trim() === '') {
@@ -33,7 +55,21 @@ const FormGastos = () => {
             descripcion
         }
 
-        agregarGasto(gasto)
+        if (estado_edicion) {
+            gasto.id = gasto_a_editar.id;
+            let presupuestoNuevo = presupuestoRestante;
+            presupuestoNuevo += gasto_a_editar.cantidad;
+
+            presupuestoNuevo -= gasto.cantidad;
+            await actualizarGastos(gasto)
+            actualizarRestante(presupuestoNuevo)
+        } else {
+            gasto.id = Date.now();
+            agregarGasto(gasto)
+            
+        }
+
+
 
     }
 
@@ -57,6 +93,7 @@ const FormGastos = () => {
                         getInputRef={cantidadRef}
                         className="form-control input-app-gastos"
                         value={ cantidad }
+                        id="cantidad"
                         thousandSeparator={ true }
                         onValueChange={({value}) => actualizarCantidad(Number(value))}
                     />
@@ -74,7 +111,15 @@ const FormGastos = () => {
                     />
                 </div>
                 <div>
-                    <button className="btn btn-gastos-principal btn-block">Registrar</button>
+                    { estado_edicion
+                        ?
+                            <>
+                                <button className="btn btn-gastos-principal btn-block">Actualizar</button>
+                                <button className="btn btn-secondary btn-block" onClick={() => cancelarEdicionGasto()}>Cancelar</button>
+                            </>
+                        :
+                            <button className="btn btn-gastos-principal btn-block">Registrar</button>
+                    }
                 </div>
             </form>
         </div>

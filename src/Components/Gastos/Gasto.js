@@ -1,11 +1,16 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import NumberFormat from 'react-number-format';
 
+import {Querys} from '../utils/Querys';
+import GastosContext from '../../Context/Gastos/GastosContext';
 import './Gastos.css';
 
 const Gasto = ({ gasto }) => {
     
+    const {eliminarGasto, activarEdicionGasto} = useContext(GastosContext)
     const { cantidad, descripcion } = gasto;
+    const queryLaptop = Querys('(min-width: 768px)');
+
 
     return (
         <div className="bg-white rounded gasto-caja mb-2">
@@ -21,8 +26,13 @@ const Gasto = ({ gasto }) => {
                     </h6>
                 </div>
                 <div className="acciones">
-                    <i className="fas fa-edit text-warning mr-2"></i>
-                    <i className="fas fa-trash text-danger"></i>
+                    { queryLaptop
+                        ?
+                            <i className="fas fa-edit text-warning mr-2" onClick={ () => activarEdicionGasto(gasto) }></i>
+                        :
+                            <i className="fas fa-edit text-warning mr-2" onClick={ () => activarEdicionGasto(gasto) } data-toggle="modal" data-target="#exampleModal"></i>
+                    }
+                    <i className="fas fa-trash text-danger" onDoubleClick={ () => eliminarGasto(gasto.id, cantidad) }></i>
                 </div>
             </div>
             <div className="toast-body py-1">
